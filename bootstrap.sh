@@ -11,7 +11,7 @@ sudo apt install python3-pip -y
 git clone --branch $1 https://github.com/ekiczek/raspberry-pi-speed-radar.git
 
 # pip install requirements
-pip install -r raspberry-pi-speed-radar/requirements.txt
+pip install -r /raspberry-pi-speed-radar/requirements.txt
 
 # Setup service to run the speed radar now and on every reboot
 # Reference: https://medium.com/@Tankado95/how-to-run-a-python-code-as-a-service-using-systemctl-4f6ad1835bf2
@@ -22,7 +22,7 @@ Description=speed-radar
 After=multi-user.target
 
 [Service]
-WorkingDirectory=raspberry-pi-speed-radar
+WorkingDirectory=/raspberry-pi-speed-radar
 User=root
 Type=idle
 ExecStart=python3 /raspberry-pi-speed-radar/main.py $2 &> /dev/null
