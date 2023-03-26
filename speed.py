@@ -6,6 +6,12 @@ import serial
 logging.basicConfig(filename='speed-radar.log', encoding='utf-8', level=logging.DEBUG)
 
 logging.info("Speed limit set to: " + sys.argv[1] + " mph")
+logging.debug("AWS IoT Core API endpoint: " + sys.argv[2])
+logging.debug("AWS IoT Core ca_file: " + sys.argv[3])
+logging.debug("AWS IoT Core cert: " + sys.argv[4])
+logging.debug("AWS IoT Core key: " + sys.argv[5])
+logging.debug("AWS IoT Core client_id: " + sys.argv[6])
+logging.debug("AWS IoT Core topic: " + sys.argv[7])
 
 def send_serial_cmd(print_prefix, command):
     """

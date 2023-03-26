@@ -3,6 +3,12 @@
 # We need to provide the following params when calling this script:
 # Param 1 - code branch
 # Param 2 - speed limit
+# Param 3 - AWS IoT Core API endpoint
+# Param 4 - AWS IoT Core ca_file
+# Param 5 - AWS IoT Core cert
+# Param 6 - AWS IoT Core key
+# Param 7 - AWS IoT Core client_id
+# Param 8 - AWS IoT Core topic
 
 # Install pip
 sudo apt install python3-pip -y
@@ -25,7 +31,7 @@ After=multi-user.target
 WorkingDirectory=/raspberry-pi-speed-radar
 User=root
 Type=idle
-ExecStart=python3 /raspberry-pi-speed-radar/main.py $2 &> /dev/null
+ExecStart=python3 /raspberry-pi-speed-radar/main.py $2 $3 $4 $5 $6 $7 $8 &> /dev/null
 Restart=always
 
 [Install]
