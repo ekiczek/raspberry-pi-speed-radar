@@ -46,8 +46,12 @@ fi
 # The script needs to access the AWS SDK command line utilities, so copy it to the same directory as the script.
 cp aws-iot-device-sdk-python-v2/samples/utils/command_line_utils.py /raspberry-pi-speed-radar/.
 
+# Move root CA (installed during pip install above) to the repo directory
+mv root-CA.crt /raspberry-pi-speed-radar/.
+
 # Move all of the AWS IoT files defined in user-data to our repo for injestion
 mv /aws_iot_thing_connect/* /raspberry-pi-speed-radar/.
+
 rmdir /aws_iot_thing_connect
 # Setup service to run the speed radar now and on every reboot
 # Reference: https://medium.com/@Tankado95/how-to-run-a-python-code-as-a-service-using-systemctl-4f6ad1835bf2
@@ -61,7 +65,7 @@ After=multi-user.target
 WorkingDirectory=/raspberry-pi-speed-radar
 User=root
 Type=idle
-ExecStart=python3 /raspberry-pi-speed-radar/main.py --speed-limit $2 --endpoint $3 --ca_file $4 --cert $5 --key $6 --client_id $7 --topic $8 &> /dev/null
+ExecStart=python3 /raspberry-pi-speed-radar/main.py --speed_limit $2 --endpoint $3 --ca_file $4 --cert $5 --key $6 --client_id $7 --topic $8
 Restart=always
 
 [Install]
