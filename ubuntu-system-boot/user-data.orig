@@ -3,12 +3,12 @@ write_files:
   owner: root:root
   permissions: '0644'
   content: |
-    <SPEEDRADAR_CERT_PEM_CONTENTS>
+    <AWS_IOT_CERT_PEM_CONTENTS>
 - path: /aws_iot_thing_connect/speedRadar.private.key
   owner: root:root
   permissions: '0644'
   content: |
-    <SPEEDRADAR_PRIVATE_KEY_CONTENTS>
+    <AWS_IOT_PRIVATE_KEY_CONTENTS>
 runcmd:
 # The sleep and apt-get commands below have been added to take the place of cloud-init's
 # package_update and package_upgrade features. These are not currently working because
