@@ -3,7 +3,7 @@ write_files:
   owner: root:root
   permissions: '0644'
   content: |
-    <SPEEDRADER-CERT-PEM_CONTENTS>
+    <SPEEDRADAR_CERT_PEM_CONTENTS>
 - path: /aws_iot_thing_connect/speedRadar.private.key
   owner: root:root
   permissions: '0644'
