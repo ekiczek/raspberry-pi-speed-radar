@@ -72,6 +72,13 @@ Restart=always
 WantedBy=multi-user.target
 EOL
 
+# Start speed-radar and enable service upon reboot
+
 sudo systemctl daemon-reload
 sudo systemctl enable speed-radar
 sudo systemctl start speed-radar
+
+# Cleanup after this script
+rm -f /home/ubuntu/bootstrap.sh
+
+sudo shutdown now -r
