@@ -4,11 +4,8 @@
 # Param 1 - code branch
 # Param 2 - speed limit
 # Param 3 - AWS IoT Core API endpoint
-# Param 4 - AWS IoT Core ca_file
-# Param 5 - AWS IoT Core cert
-# Param 6 - AWS IoT Core key
-# Param 7 - AWS IoT Core client_id
-# Param 8 - AWS IoT Core topic
+# Param 4 - AWS IoT Core client_id
+# Param 5 - AWS IoT Core topic
 
 # Install pip
 sudo apt install python3-pip -y
@@ -18,7 +15,6 @@ git clone --branch $1 https://github.com/ekiczek/raspberry-pi-speed-radar.git
 
 # pip install requirements
 pip install -r /raspberry-pi-speed-radar/requirements.txt
-
 
 # Setup AWS IoT stuff, beginning with downloading the AWS IoT Root CA
 if [ ! -f ./root-CA.crt ]; then
@@ -65,7 +61,7 @@ After=multi-user.target
 WorkingDirectory=/raspberry-pi-speed-radar
 User=root
 Type=idle
-ExecStart=python3 /raspberry-pi-speed-radar/main.py --speed_limit $2 --endpoint $3 --ca_file $4 --cert $5 --key $6 --client_id $7 --topic $8
+ExecStart=python3 /raspberry-pi-speed-radar/main.py --speed_limit $2 --client_id $4 --topic $5 --endpoint $3 --ca_file root-CA.crt --cert speedRadar.cert.pem --key speedRadar.private.key
 Restart=always
 
 [Install]
