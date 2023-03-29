@@ -1,3 +1,14 @@
+write_files:
+- path: /aws_iot_thing_connect/speedRadar.cert.pem
+  owner: root:root
+  permissions: '0644'
+  content: |
+    <SPEEDRADER-CERT-PEM_CONTENTS>
+- path: /aws_iot_thing_connect/speedRadar.private.key
+  owner: root:root
+  permissions: '0644'
+  content: |
+    <SPEEDRADAR_PRIVATE_KEY_CONTENTS>
 runcmd:
 # The sleep and apt-get commands below have been added to take the place of cloud-init's
 # package_update and package_upgrade features. These are not currently working because
@@ -7,6 +18,6 @@ runcmd:
 - [ sleep, 60 ]
 - [ apt-get, update ]
 - [ apt-get, -y, upgrade ]
-- [ curl, -L, https://<GH_PAT>@raw.githubusercontent.com/ekiczek/raspberry-pi-k8s/master/bootstrap.sh, --output, /home/ubuntu/bootstrap.sh ]
+- [ curl, -L, https://raw.githubusercontent.com/ekiczek/raspberry-pi-speed-radar/main/bootstrap.sh, --output, /home/ubuntu/bootstrap.sh ]
 - [ chmod, +x, /home/ubuntu/bootstrap.sh ]
-- [ /home/ubuntu/bootstrap.sh, master, <SPEED_LIMIT> ]
+- [ /home/ubuntu/bootstrap.sh, main, <SPEED_LIMIT>, <AWS_IOT_ENDPOINT>, <AWS_IOT_CLIENT_ID>, <AWS_IOT_TOPIC> ]
