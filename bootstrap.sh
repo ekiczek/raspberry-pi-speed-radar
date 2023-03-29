@@ -42,7 +42,7 @@ fi
 # The script needs to access the AWS SDK command line utilities, so copy it to the same directory as the script.
 cp aws-iot-device-sdk-python-v2/samples/utils/command_line_utils.py /raspberry-pi-speed-radar/.
 
-# Move root CA (installed during pip install above) to the repo directory
+# Move root CA (downloaded above) to the repo directory
 mv root-CA.crt /raspberry-pi-speed-radar/.
 
 # Move all of the AWS IoT files defined in user-data to our repo for injestion
