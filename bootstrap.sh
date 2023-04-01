@@ -2,7 +2,7 @@
 
 # We need to provide the following params when calling this script:
 # Param 1 - code branch
-# Param 2 - speed limit
+# Param 2 - speed threshold
 # Param 3 - AWS IoT Core API endpoint
 # Param 4 - AWS IoT Core client_id
 # Param 5 - AWS IoT Core topic
@@ -61,7 +61,7 @@ After=multi-user.target
 WorkingDirectory=/raspberry-pi-speed-radar
 User=root
 Type=idle
-ExecStart=python3 /raspberry-pi-speed-radar/main.py --speed_limit $2 --endpoint $3 --client_id $4 --topic $5 --ca_file root-CA.crt --cert speedRadar.cert.pem --key speedRadar.private.key
+ExecStart=python3 /raspberry-pi-speed-radar/main.py --threshold $2 --endpoint $3 --client_id $4 --topic $5 --ca_file root-CA.crt --cert speedRadar.cert.pem --key speedRadar.private.key
 Restart=always
 
 [Install]

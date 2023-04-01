@@ -13,7 +13,7 @@ cmdUtils.add_common_mqtt_commands()
 cmdUtils.add_common_topic_message_commands()
 cmdUtils.add_common_proxy_commands()
 cmdUtils.add_common_logging_commands()
-cmdUtils.register_command("speed_limit", "25", "Speed limit in mph.", type=int)
+cmdUtils.register_command("speed_threshold", "25", "Speed threshold in mph.", type=int)
 cmdUtils.register_command("key", "<path>", "Path to your key in PEM format.", True, str)
 cmdUtils.register_command("cert", "<path>", "Path to your client certificate in PEM format.", True, str)
 cmdUtils.register_command("port", "<int>", "Connection port. AWS IoT supports 443 and 8883 (optional, default=auto).", type=int)
@@ -27,7 +27,7 @@ is_ci = cmdUtils.get_command("is_ci", None) != None
 
 logging.basicConfig(filename='speed-radar.log', encoding='utf-8', level=logging.DEBUG)
 
-logging.info("Speed limit set to: " + str(cmdUtils.get_command("speed_limit")) + " mph")
+logging.info("Speed threshold set to: " + str(cmdUtils.get_command("speed_threshold")) + " mph")
 logging.debug("AWS IoT Core API endpoint: " + str(cmdUtils.get_command("endpoint")))
 logging.debug("AWS IoT Core ca_file: " + str(cmdUtils.get_command("ca_file")))
 logging.debug("AWS IoT Core cert: " + str(cmdUtils.get_command("cert")))
@@ -119,7 +119,7 @@ send_serial_cmd("\nSet Threshold Control: ", Ops_Threshold_Control)
 send_serial_cmd("\nSet Blanks Preference: ", Ops_Blanks_Pref_Zero)
 # send_serial_cmd("\nModule Information: ", Ops_Module_Information)
 
-def ops_get_speed(speed_limit):
+def ops_get_speed(speed_threshold):
     """
     capture speed reading from OPS module
     """
@@ -146,7 +146,7 @@ def ops_get_speed(speed_limit):
         if speed_available == True:
             speed_rnd = round(Ops_rx_float)
 
-            if abs(speed_rnd) > int(speed_limit):
+            if abs(speed_rnd) > int(speed_threshold):
                 logging.info("Object detected, speed: " + format(float(speed_rnd),'f') + " mph" )
 
                 # message = "{} [{}]".format(message_string, float(speed_rnd))
@@ -193,4 +193,4 @@ if __name__ == "__main__":
     logging.info("Subscribed with {}".format(str(subscribe_result['qos'])))
 
     while True:
-        ops_get_speed(str(cmdUtils.get_command("speed_limit")))
+        ops_get_speed(str(cmdUtils.get_command("speed_threshold")))
