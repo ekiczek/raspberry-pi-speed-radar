@@ -20,4 +20,4 @@ runcmd:
 - [ apt-get, -y, upgrade ]
 - [ curl, -L, https://raw.githubusercontent.com/ekiczek/raspberry-pi-speed-radar/main/bootstrap.sh, --output, /home/ubuntu/bootstrap.sh ]
 - [ chmod, +x, /home/ubuntu/bootstrap.sh ]
-- [ /home/ubuntu/bootstrap.sh, main, <SPEED_LIMIT>, <AWS_IOT_ENDPOINT>, <AWS_IOT_CLIENT_ID>, <AWS_IOT_TOPIC> ]
+- [ /home/ubuntu/bootstrap.sh, main, <SPEED_THRESHOLD>, <AWS_IOT_ENDPOINT>, <AWS_IOT_CLIENT_ID>, <AWS_IOT_TOPIC> ]
