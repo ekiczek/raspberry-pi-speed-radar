@@ -1,6 +1,7 @@
 from awscrt import mqtt
 import sys
 import logging
+from logging.handlers import TimedRotatingFileHandler
 import time
 import serial
 import threading
@@ -25,7 +26,17 @@ received_count = 0
 received_all_event = threading.Event()
 is_ci = cmdUtils.get_command("is_ci", None) != None
 
-logging.basicConfig(filename='speed-radar.log', encoding='utf-8', level=logging.DEBUG)
+logging.basicConfig(
+  handlers=[
+    TimedRotatingFileHandler(
+      'speed-radar.log', 
+      when="midnight", 
+      backupCount=30
+    )
+  ],
+  level=logging.DEBUG,
+  format='%(asctime)s %(levelname)s PID_%(process)d %(message)s'
+)
 
 logging.info("Speed threshold set to: " + str(cmdUtils.get_command("speed_threshold")) + " mph")
 logging.debug("AWS IoT Core API endpoint: " + str(cmdUtils.get_command("endpoint")))
