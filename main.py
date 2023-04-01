@@ -133,8 +133,6 @@ def ops_get_speed(speed_threshold):
     """
     capture speed reading from OPS module
     """
-    #captured_speeds = []
-
     while True:
         speed_available = False
         Ops_rx_bytes = ser.readline()
