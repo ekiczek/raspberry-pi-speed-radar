@@ -61,7 +61,7 @@ After=multi-user.target
 WorkingDirectory=/raspberry-pi-speed-radar
 User=root
 Type=idle
-ExecStart=python3 /raspberry-pi-speed-radar/main.py --threshold $2 --endpoint $3 --client_id $4 --topic $5 --ca_file root-CA.crt --cert speedRadar.cert.pem --key speedRadar.private.key
+ExecStart=python3 /raspberry-pi-speed-radar/main.py --speed_threshold $2 --endpoint $3 --client_id $4 --topic $5 --ca_file root-CA.crt --cert speedRadar.cert.pem --key speedRadar.private.key
 Restart=always
 
 [Install]
