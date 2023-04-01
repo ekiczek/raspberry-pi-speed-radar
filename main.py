@@ -34,17 +34,17 @@ logging.basicConfig(
       backupCount=30
     )
   ],
-  level=logging.DEBUG,
+  level=logging.INFO,
   format='%(asctime)s %(levelname)s PID_%(process)d %(message)s'
 )
 
 logging.info("Speed threshold set to: " + str(cmdUtils.get_command("speed_threshold")) + " mph")
-logging.debug("AWS IoT Core API endpoint: " + str(cmdUtils.get_command("endpoint")))
-logging.debug("AWS IoT Core ca_file: " + str(cmdUtils.get_command("ca_file")))
-logging.debug("AWS IoT Core cert: " + str(cmdUtils.get_command("cert")))
-logging.debug("AWS IoT Core key: " + str(cmdUtils.get_command("key")))
-logging.debug("AWS IoT Core client_id: " + str(cmdUtils.get_command("client_id")))
-logging.debug("AWS IoT Core topic: " + str(cmdUtils.get_command("topic")))
+logging.info("AWS IoT Core API endpoint: " + str(cmdUtils.get_command("endpoint")))
+logging.info("AWS IoT Core ca_file: " + str(cmdUtils.get_command("ca_file")))
+logging.info("AWS IoT Core cert: " + str(cmdUtils.get_command("cert")))
+logging.info("AWS IoT Core key: " + str(cmdUtils.get_command("key")))
+logging.info("AWS IoT Core client_id: " + str(cmdUtils.get_command("client_id")))
+logging.info("AWS IoT Core topic: " + str(cmdUtils.get_command("topic")))
 
 # Callback when connection is accidentally lost.
 def on_connection_interrupted(connection, error, **kwargs):
@@ -85,7 +85,6 @@ def send_serial_cmd(print_prefix, command):
     data_for_send_str = command
     data_for_send_bytes = str.encode(data_for_send_str)
     logging.info(print_prefix + command)
-    # print(print_prefix, command)
     ser.write(data_for_send_bytes)
     # initialize message verify checking
     ser_message_start = '{'
@@ -122,20 +121,18 @@ Ops_Module_Information = '??'
 Ops_Overlook_Buffer = 'OZ'
 
 # initialize the OPS module
-send_serial_cmd("\nOverlook buffer", Ops_Overlook_Buffer)
-send_serial_cmd("\nSet Speed Output Units: ", Ops_Speed_Output_Units[0])
-send_serial_cmd("\nSet Sampling Frequency: ", Ops_Sampling_Frequency)
-send_serial_cmd("\nSet Transmit Power: ", Ops_Transmit_Power)
-send_serial_cmd("\nSet Threshold Control: ", Ops_Threshold_Control)
-send_serial_cmd("\nSet Blanks Preference: ", Ops_Blanks_Pref_Zero)
-# send_serial_cmd("\nModule Information: ", Ops_Module_Information)
+send_serial_cmd("Overlook buffer: ", Ops_Overlook_Buffer)
+send_serial_cmd("Set Speed Output Units: ", Ops_Speed_Output_Units[0])
+send_serial_cmd("Set Sampling Frequency: ", Ops_Sampling_Frequency)
+send_serial_cmd("Set Transmit Power: ", Ops_Transmit_Power)
+send_serial_cmd("Set Threshold Control: ", Ops_Threshold_Control)
+send_serial_cmd("Set Blanks Preference: ", Ops_Blanks_Pref_Zero)
+# send_serial_cmd("Module Information: ", Ops_Module_Information)
 
 def ops_get_speed(speed_threshold):
     """
     capture speed reading from OPS module
     """
-    #captured_speeds = []
-
     while True:
         speed_available = False
         Ops_rx_bytes = ser.readline()
@@ -151,7 +148,6 @@ def ops_get_speed(speed_threshold):
                     speed_available = True
                 except ValueError:
                     logging.warning("Unable to convert to a number the string: " + Ops_rx_str)
-                    # print("Unable to convert to a number the string: " + Ops_rx_str)
                     speed_available = False
 
         if speed_available == True:
