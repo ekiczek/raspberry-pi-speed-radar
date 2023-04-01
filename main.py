@@ -121,7 +121,7 @@ Ops_Module_Information = '??'
 Ops_Overlook_Buffer = 'OZ'
 
 # initialize the OPS module
-send_serial_cmd("Overlook buffer", Ops_Overlook_Buffer)
+send_serial_cmd("Overlook buffer: ", Ops_Overlook_Buffer)
 send_serial_cmd("Set Speed Output Units: ", Ops_Speed_Output_Units[0])
 send_serial_cmd("Set Sampling Frequency: ", Ops_Sampling_Frequency)
 send_serial_cmd("Set Transmit Power: ", Ops_Transmit_Power)
