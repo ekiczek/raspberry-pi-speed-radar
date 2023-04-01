@@ -127,7 +127,7 @@ send_serial_cmd("Set Sampling Frequency: ", Ops_Sampling_Frequency)
 send_serial_cmd("Set Transmit Power: ", Ops_Transmit_Power)
 send_serial_cmd("Set Threshold Control: ", Ops_Threshold_Control)
 send_serial_cmd("Set Blanks Preference: ", Ops_Blanks_Pref_Zero)
-send_serial_cmd("\nModule Information: ", Ops_Module_Information)
+# send_serial_cmd("Module Information: ", Ops_Module_Information)
 
 def ops_get_speed(speed_threshold):
     """
