@@ -85,7 +85,6 @@ def send_serial_cmd(print_prefix, command):
     data_for_send_str = command
     data_for_send_bytes = str.encode(data_for_send_str)
     logging.info(print_prefix + command)
-    # print(print_prefix, command)
     ser.write(data_for_send_bytes)
     # initialize message verify checking
     ser_message_start = '{'
@@ -122,13 +121,13 @@ Ops_Module_Information = '??'
 Ops_Overlook_Buffer = 'OZ'
 
 # initialize the OPS module
-send_serial_cmd("\nOverlook buffer", Ops_Overlook_Buffer)
-send_serial_cmd("\nSet Speed Output Units: ", Ops_Speed_Output_Units[0])
-send_serial_cmd("\nSet Sampling Frequency: ", Ops_Sampling_Frequency)
-send_serial_cmd("\nSet Transmit Power: ", Ops_Transmit_Power)
-send_serial_cmd("\nSet Threshold Control: ", Ops_Threshold_Control)
-send_serial_cmd("\nSet Blanks Preference: ", Ops_Blanks_Pref_Zero)
-# send_serial_cmd("\nModule Information: ", Ops_Module_Information)
+send_serial_cmd("Overlook buffer", Ops_Overlook_Buffer)
+send_serial_cmd("Set Speed Output Units: ", Ops_Speed_Output_Units[0])
+send_serial_cmd("Set Sampling Frequency: ", Ops_Sampling_Frequency)
+send_serial_cmd("Set Transmit Power: ", Ops_Transmit_Power)
+send_serial_cmd("Set Threshold Control: ", Ops_Threshold_Control)
+send_serial_cmd("Set Blanks Preference: ", Ops_Blanks_Pref_Zero)
+send_serial_cmd("\nModule Information: ", Ops_Module_Information)
 
 def ops_get_speed(speed_threshold):
     """
@@ -151,7 +150,6 @@ def ops_get_speed(speed_threshold):
                     speed_available = True
                 except ValueError:
                     logging.warning("Unable to convert to a number the string: " + Ops_rx_str)
-                    # print("Unable to convert to a number the string: " + Ops_rx_str)
                     speed_available = False
 
         if speed_available == True:
