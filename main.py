@@ -34,17 +34,17 @@ logging.basicConfig(
       backupCount=30
     )
   ],
-  level=logging.DEBUG,
+  level=logging.INFO,
   format='%(asctime)s %(levelname)s PID_%(process)d %(message)s'
 )
 
 logging.info("Speed threshold set to: " + str(cmdUtils.get_command("speed_threshold")) + " mph")
-logging.debug("AWS IoT Core API endpoint: " + str(cmdUtils.get_command("endpoint")))
-logging.debug("AWS IoT Core ca_file: " + str(cmdUtils.get_command("ca_file")))
-logging.debug("AWS IoT Core cert: " + str(cmdUtils.get_command("cert")))
-logging.debug("AWS IoT Core key: " + str(cmdUtils.get_command("key")))
-logging.debug("AWS IoT Core client_id: " + str(cmdUtils.get_command("client_id")))
-logging.debug("AWS IoT Core topic: " + str(cmdUtils.get_command("topic")))
+logging.info("AWS IoT Core API endpoint: " + str(cmdUtils.get_command("endpoint")))
+logging.info("AWS IoT Core ca_file: " + str(cmdUtils.get_command("ca_file")))
+logging.info("AWS IoT Core cert: " + str(cmdUtils.get_command("cert")))
+logging.info("AWS IoT Core key: " + str(cmdUtils.get_command("key")))
+logging.info("AWS IoT Core client_id: " + str(cmdUtils.get_command("client_id")))
+logging.info("AWS IoT Core topic: " + str(cmdUtils.get_command("topic")))
 
 # Callback when connection is accidentally lost.
 def on_connection_interrupted(connection, error, **kwargs):
