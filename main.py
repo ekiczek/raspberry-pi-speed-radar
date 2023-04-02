@@ -231,16 +231,18 @@ if __name__ == "__main__":
                 } 
         elif current_reading == 0:
             if previous_detected_positive["speed"] > 0:
-                publish_speed(previous_detected_positive["speed"])
-                previous_detected_positive = {
-                    "time": int(time.time()),
-                    "speed": 0
-                }
+                if int(time.time()) - previous_detected_positive["time"] > 1:
+                    publish_speed(previous_detected_positive["speed"])
+                    previous_detected_positive = {
+                        "time": int(time.time()),
+                        "speed": 0
+                    }
             if previous_detected_negative["speed"] < 0:
-                publish_speed(previous_detected_negative["speed"])
-                previous_detected_negative = {
-                    "time": int(time.time()),
-                    "speed": 0
-                }
+                if int(time.time()) - previous_detected_negative["time"] > 1:
+                    publish_speed(previous_detected_negative["speed"])
+                    previous_detected_negative = {
+                        "time": int(time.time()),
+                        "speed": 0
+                    }
                 
 
