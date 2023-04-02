@@ -223,12 +223,16 @@ if __name__ == "__main__":
                     "time": int(time.time()),
                     "speed": current_reading
                 } 
+            else:
+                previous_detected_negative["time"] = int(time.time())
         elif current_reading > 0:
             if current_reading > previous_detected_positive["speed"]:
                 previous_detected_positive = {
                     "time": int(time.time()),
                     "speed": current_reading
-                } 
+                }
+            else:
+                previous_detected_positive["time"] = int(time.time())
         elif current_reading == 0:
             if previous_detected_positive["speed"] > 0:
                 if int(time.time()) - previous_detected_positive["time"] > 1:
