@@ -133,43 +133,46 @@ def ops_get_speed(speed_threshold):
     """
     capture speed reading from OPS module
     """
-    while True:
-        speed_available = False
-        Ops_rx_bytes = ser.readline()
-        # check for speed information from OPS module
-        Ops_rx_bytes_length = len(Ops_rx_bytes)
-        if Ops_rx_bytes_length != 0:
-            Ops_rx_str = str(Ops_rx_bytes)
-            # print("RX:"+Ops_rx_str)
-            if Ops_rx_str.find('{') == -1:
-                # speed data found
-                try:
-                    Ops_rx_float = float(Ops_rx_bytes)
-                    speed_available = True
-                except ValueError:
-                    logging.warning("Unable to convert to a number the string: " + Ops_rx_str)
-                    speed_available = False
+    speed_available = False
+    Ops_rx_bytes = ser.readline()
+    # check for speed information from OPS module
+    Ops_rx_bytes_length = len(Ops_rx_bytes)
+    if Ops_rx_bytes_length != 0:
+        Ops_rx_str = str(Ops_rx_bytes)
+        # print("RX:"+Ops_rx_str)
+        if Ops_rx_str.find('{') == -1:
+            # speed data found
+            try:
+                Ops_rx_float = float(Ops_rx_bytes)
+                speed_available = True
+            except ValueError:
+                logging.warning("Unable to convert to a number the string: " + Ops_rx_str)
+                speed_available = False
 
-        if speed_available == True:
-            speed_rnd = round(Ops_rx_float)
+    if speed_available == True:
+        speed_rnd = round(Ops_rx_float)
 
-            if abs(speed_rnd) > int(speed_threshold):
-                logging.info("Object detected, speed: " + format(float(speed_rnd),'f') + " mph" )
+        if abs(speed_rnd) > int(speed_threshold):
+            logging.info("Object detected, speed: " + format(float(speed_rnd),'f') + " mph" )
 
-                # message = "{} [{}]".format(message_string, float(speed_rnd))
-                logging.info("Publishing speed to topic '{}': {}".format(message_topic, str(int(abs(speed_rnd)))))
-                message_json = json.dumps(
-                    {
-                        "time": int(time.time()),
-                        "speed": int(abs(speed_rnd)),
-                    }, indent=2
-                )
-                mqtt_connection.publish(
-                    topic=message_topic,
-                    payload=message_json,
-                    qos=mqtt.QoS.AT_LEAST_ONCE)
+            # message = "{} [{}]".format(message_string, float(speed_rnd))
 
-                return
+            return speed_rnd
+        return 0
+    return 0
+
+def publish_speed(speed_rnd):
+    logging.info("Publishing speed to topic '{}': {}".format(message_topic, str(int(abs(speed_rnd)))))
+    message_json = json.dumps(
+        {
+            "time": int(time.time()),
+            "speed": int(abs(speed_rnd)),
+        }, indent=2
+    )
+    mqtt_connection.publish(
+        topic=message_topic,
+        payload=message_json,
+        qos=mqtt.QoS.AT_LEAST_ONCE)
 
 if __name__ == "__main__":
     mqtt_connection = cmdUtils.build_mqtt_connection(on_connection_interrupted, on_connection_resumed)
@@ -199,5 +202,51 @@ if __name__ == "__main__":
     subscribe_result = subscribe_future.result()
     logging.info("Subscribed with {}".format(str(subscribe_result['qos'])))
 
+    previous_detected_positive = {
+        "time": int(time.time()),
+        "speed": 0
+    }
+
+    previous_detected_negative = {
+        "time": int(time.time()),
+        "speed": 0
+    }
+
+    current_reading = 0
+
     while True:
-        ops_get_speed(str(cmdUtils.get_command("speed_threshold")))
+        current_reading = int(ops_get_speed(str(cmdUtils.get_command("speed_threshold"))))
+
+        if current_reading < 0:
+            if current_reading < previous_detected_negative["speed"]:
+                previous_detected_negative = {
+                    "time": int(time.time()),
+                    "speed": current_reading
+                } 
+            else:
+                previous_detected_negative["time"] = int(time.time())
+        elif current_reading > 0:
+            if current_reading > previous_detected_positive["speed"]:
+                previous_detected_positive = {
+                    "time": int(time.time()),
+                    "speed": current_reading
+                }
+            else:
+                previous_detected_positive["time"] = int(time.time())
+        elif current_reading == 0:
+            if previous_detected_positive["speed"] > 0:
+                if int(time.time()) - previous_detected_positive["time"] > 1:
+                    publish_speed(previous_detected_positive["speed"])
+                    previous_detected_positive = {
+                        "time": int(time.time()),
+                        "speed": 0
+                    }
+            if previous_detected_negative["speed"] < 0:
+                if int(time.time()) - previous_detected_negative["time"] > 1:
+                    publish_speed(previous_detected_negative["speed"])
+                    previous_detected_negative = {
+                        "time": int(time.time()),
+                        "speed": 0
+                    }
+                
+
