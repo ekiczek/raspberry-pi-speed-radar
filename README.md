@@ -65,5 +65,5 @@ Total cost (April 2023): $390
 NOTE: I already had a USB MicroSD Card Reader similar to https://www.canakit.com/mini-micro-sd-usb-reader.html. This is required to write MicroSD card images.
 
 # References
-* https://www.hackster.io/rob-lauer/busted-create-an-ml-powered-speed-trap-b1e5d1 is the article that sparked this project
+* https://www.hackster.io/rob-lauer/busted-create-an-ml-powered-speed-trap-b1e5d1 is the article that sparked this project.
 * https://www.youtube.com/watch?v=z8T4hAERuOg is the YouTube video tutorial providing instructions for streaming data to AWS IoT, routing that data to a Timestream database, and finally reading that data and displaying it on a Managed Grafana dashboard.
