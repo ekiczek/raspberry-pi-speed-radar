@@ -29,7 +29,7 @@ The Raspberry Pi Speed Radar will send data to an AWS IoT endpoint, which will t
 1. Also from this repo, copy `ubuntu-system-boot/user-data.orig` to `ubuntu-system-boot/user-data`. Then, replace:
    * `<AWS_IOT_CERT_PEM_CONTENTS>` with the contents of the PEM certificate file obtained during AWS IoT setup.
    * `<AWS_IOT_PRIVATE_KEY_CONTENTS>` with the contents of the private key obtained during AWS IoT setup.
-   * `<SPEED_THRESHOLD>` with the speed threshold (in mph) above which objects should be registered
+   * `<SPEED_THRESHOLD>` with the speed threshold (in mph) above which objects should be registered.
    * `<AWS_IOT_ENDPOINT>` with the value of the AWS IoT endpoint provided during AWS IoT setup.
    * `<AWS_IOT_CLIENT_ID>` with the value of the AWS IoT client ID provided during AWS IoT setup.
    * `<AWS_IOT_TOPIC>` with the value of the AWS IoT topic provided during AWS IoT setup.
@@ -60,7 +60,7 @@ The Raspberry Pi Speed Radar will send data to an AWS IoT endpoint, which will t
 * 1 StarTech.com 6in (15cm) USB C Charging Cable Right Angle - 60W PD 3A - Heavy Duty Fast Charge USB-C Cable - USB 2.0 Type-C - Rugged Aramid Fiber - Short USB Cord (R2CCR-15C-USB-CABLE), Black: https://www.amazon.com/gp/product/B0B944QCHN
 * 1 Anker USB C Charger 30W, 711 Charger, Compact Fast Charger (Not Foldable) for MacBook Air/iPhone 13/13 Mini/ 13 Pro/ 13 Pro Max/ 12, Galaxy S21, Note 20, iPad Pro, Pixel, and More: https://www.amazon.com/gp/product/B09J4XRSZJ
 
-Total cost with optional items (April 2023): $390
+Total cost (April 2023): $390
 
 NOTE: I already had a USB MicroSD Card Reader similar to https://www.canakit.com/mini-micro-sd-usb-reader.html. This is required to write MicroSD card images.
 
