@@ -15,19 +15,6 @@ I wanted to see if we have a speeding problem on our street, so I decided to bui
 1. Download and install the Raspberry Pi Imager for your operating system: https://www.raspberrypi.org/downloads/.
 1. Download the latest Ubuntu Server 64-bit image from https://ubuntu.com/download/raspberry-pi. Currently Ubuntu Server 22.04.2 64-bit for Raspberry Pi 4 is recommended: https://ubuntu.com/download/raspberry-pi/thank-you?version=22.04.2&architecture=server-arm64+raspi. The result should be a single `.img.xz` file.
 
-<a href="#hardware-inventory"></a>
-# Hardware Inventory
-* 1 Raspberry Pi 4B, 8GB: https://www.amazon.com/gp/product/B0899VXM8F
-* 1 Outdoor IoT Enclosure for Raspberry Pi & Development Boards: https://www.amazon.com/gp/product/B09TRZ5BTB
-* 1 SanDisk 128GB Extreme microSDXC UHS-I Memory Card with Adapter: https://www.amazon.com/gp/product/B09X7BK27V
-* 1 CableCreation 6 inch USB C Cable Short, Short USB to USB C Cable 3A Fast Charging Cable, Braided USB C Male to USB Male Cable for Power Bank, Galaxy S23, iPad Pro iPad Mini S22 S21 Z Flip, etc, Gray: https://www.amazon.com/gp/product/B01CZVEUIE
-* 1 StarTech.com 6in (15cm) USB C Charging Cable Right Angle - 60W PD 3A - Heavy Duty Fast Charge USB-C Cable - USB 2.0 Type-C - Rugged Aramid Fiber - Short USB Cord (R2CCR-15C-USB-CABLE), Black: https://www.amazon.com/gp/product/B0B944QCHN
-* 1 Anker USB C Charger 30W, 711 Charger, Compact Fast Charger (Not Foldable) for MacBook Air/iPhone 13/13 Mini/ 13 Pro/ 13 Pro Max/ 12, Galaxy S21, Note 20, iPad Pro, Pixel, and More: https://www.amazon.com/gp/product/B09J4XRSZJ
-
-Total cost with optional items (April 2023): $390
-
-NOTE: I already had a USB MicroSD Card Reader similar to https://www.canakit.com/mini-micro-sd-usb-reader.html. This is required to write MicroSD card images.
-
 ## Setup AWS IoT, Timestream and Managed Grafana
 The Raspberry Pi Speed Radar will send data to an AWS IoT endpoint, which will then route the data to a Timestream database. Managed Grafana will query the database and display results in a dashboard. I don't have time to document the procedure fully, but I learned everything I needed to know from an AWS tutorial video: https://www.youtube.com/watch?v=z8T4hAERuOg. I hope to provide more formally documented instructions in a later revision of this README.
 
@@ -63,6 +50,19 @@ The Raspberry Pi Speed Radar will send data to an AWS IoT endpoint, which will t
 
 ### On Linux
 1. TBD
+
+<a href="#hardware-inventory"></a>
+# Hardware Inventory
+* 1 Raspberry Pi 4B, 8GB: https://www.amazon.com/gp/product/B0899VXM8F
+* 1 Outdoor IoT Enclosure for Raspberry Pi & Development Boards: https://www.amazon.com/gp/product/B09TRZ5BTB
+* 1 SanDisk 128GB Extreme microSDXC UHS-I Memory Card with Adapter: https://www.amazon.com/gp/product/B09X7BK27V
+* 1 CableCreation 6 inch USB C Cable Short, Short USB to USB C Cable 3A Fast Charging Cable, Braided USB C Male to USB Male Cable for Power Bank, Galaxy S23, iPad Pro iPad Mini S22 S21 Z Flip, etc, Gray: https://www.amazon.com/gp/product/B01CZVEUIE
+* 1 StarTech.com 6in (15cm) USB C Charging Cable Right Angle - 60W PD 3A - Heavy Duty Fast Charge USB-C Cable - USB 2.0 Type-C - Rugged Aramid Fiber - Short USB Cord (R2CCR-15C-USB-CABLE), Black: https://www.amazon.com/gp/product/B0B944QCHN
+* 1 Anker USB C Charger 30W, 711 Charger, Compact Fast Charger (Not Foldable) for MacBook Air/iPhone 13/13 Mini/ 13 Pro/ 13 Pro Max/ 12, Galaxy S21, Note 20, iPad Pro, Pixel, and More: https://www.amazon.com/gp/product/B09J4XRSZJ
+
+Total cost with optional items (April 2023): $390
+
+NOTE: I already had a USB MicroSD Card Reader similar to https://www.canakit.com/mini-micro-sd-usb-reader.html. This is required to write MicroSD card images.
 
 # References
 * https://www.hackster.io/rob-lauer/busted-create-an-ml-powered-speed-trap-b1e5d1 is the article that sparked this project
