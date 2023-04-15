@@ -58,6 +58,12 @@ The Raspberry Pi Speed Radar will send data to an AWS IoT endpoint, which will t
 1. When complete, remove the MicroSD card from the USB MicroSD Card Reader and put the SD card in the Pi.
 1. When ready, re-connect the power cable for the Raspberry Pi. The `bootstrap.sh` script will execute and install the radar software.After about 5 minutes, the radar will be ready.
 
+### On Windows
+1. TBD
+
+### On Linux
+1. TBD
+
 # References
 * https://www.hackster.io/rob-lauer/busted-create-an-ml-powered-speed-trap-b1e5d1 is the article that sparked this project
 * https://www.youtube.com/watch?v=z8T4hAERuOg is the YouTube video tutorial providing instructions for streaming data to AWS IoT, routing that data to a Timestream database, and finally reading that data and displaying it on a Managed Grafana dashboard.
