@@ -36,10 +36,10 @@ The Raspberry Pi Speed Radar will send data to an AWS IoT endpoint, which will t
 1. In Terminal, append your first boot instructions from the previous step to the default first boot file by running (from the main `raspberry-pi-speed-radar` directory):
    ```cat ubuntu-system-boot/user-data >> /Volumes/system-boot/user-data```
 1. In the Mac OS Finder, unmount the `system-boot` volume by right-clicking on `system-boot` and selecting `Eject "system-boot"`. The changes made will be saved in the `.img` file.
-1. Assuming the `.img` files are on the Desktop, create a new modified `xz` archive by running (in Terminal):
-   ```tar -cJf ~/Desktop/MODIFIED-<FULL_NAME_OF_MODIFIED_IMAGE_FILE>.xz ~/Desktop/<FULL_NAME_OF_MODIFIED_IMAGE_FILE>```
+1. NOTE AS OF DECEMBER 2024, THE `.xz` file won't work, so I imaged using the "raw" `.img` file modified in the previous steps. ~~Assuming the `.img` files are on the Desktop, create a new modified `xz` archive by running (in Terminal):
+   ```tar -cJf ~/Desktop/MODIFIED-<FULL_NAME_OF_MODIFIED_IMAGE_FILE>.xz ~/Desktop/<FULL_NAME_OF_MODIFIED_IMAGE_FILE>```~~
 1. Insert the Pi MicroSD card into the USB MicroSD Card Reader and insert the card reader into a USB port on your computer. The volume should be automatically recognized by the Mac OS Finder.
-1. Launch the Raspberry Pi Imager and press the "Choose OS" button. Select the custom image `MODIFIED-<FULL_NAME_OF_MODIFIED_IMAGE_FILE>.xz`.
+1. NOTE AS OF DECEMBER 2024, THE `.xz` file won't work, so I imaged using the "raw" `.img` file modified in the previous steps. Launch the Raspberry Pi Imager and press the "Choose OS" button. ~~Select the custom image `MODIFIED-<FULL_NAME_OF_MODIFIED_IMAGE_FILE>.xz`.~~ Select the image file modified above.
 1. Press the "Choose SD Card" button and select the destination SD card.
 1. Finally, press the "Write" button to write the `.img.xz` file to SD card.
 1. When complete, remove the MicroSD card from the USB MicroSD Card Reader and put the SD card in the Pi.
