@@ -25,7 +25,7 @@ fi
 # Check to see if AWS Device SDK for Python exists, download if not
 if [ ! -d ./aws-iot-device-sdk-python-v2 ]; then
   printf "\nCloning the AWS SDK...\n"
-  git clone https://github.com/aws/aws-iot-device-sdk-python-v2.git --recursive
+  git clone https://github.com/aws/aws-iot-device-sdk-python-v2.git --branch v1.13.0 --recursive
 fi
 
 # Check to see if AWS Device SDK for Python is already installed, install if not
